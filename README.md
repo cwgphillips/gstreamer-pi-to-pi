@@ -4,11 +4,13 @@ Use GStreamer to stream video from a Pi Zero 2 W with a Pi Zero Camera to second
 ## Capture and Transmit Videos
 To capture images from a pi camera and then stream to a UDP sink.
 Run the pipline (same pipline in: video_stream_out.sh):
+
 `gst-launch-1.0 -v v4l2src device=/dev/video0 num-buffers=-1 ! video/x-raw, width=640, height=480, framerate=30/1 ! videoconvert ! jpegenc ! rtpjpegpay ! udpsink host=192.168.1.137 port=5200`
 
 ## Receive and View Video Stream
 To view the video being stramed into a UDP sink by another piplie.
 Run the following (same pipline in: video_stream_in_simple.sh):
+
 `gst-launch-1.0 -v udpsrc port=5200 ! \
 	application/x-rtp, media=video, clock-rate=90000, payload=96 ! \
 	rtpjpegdepay ! \
@@ -17,6 +19,8 @@ Run the following (same pipline in: video_stream_in_simple.sh):
 	autovideosink`
 
 You can then play with GStreamer's built in functionality to do things like splitting the image into different windows (which GStreamer refers to as `tee`) and applying different processing to these - processes like edge detection, for example (same pipeline in: video_stream_in_tee_and_edge_detect.sh):
+
+
 `gst-launch-1.0 -v udpsrc port=5200 ! \
 	application/x-rtp, media=video, clock-rate=90000, payload=96 ! \
 	rtpjpegdepay ! \
