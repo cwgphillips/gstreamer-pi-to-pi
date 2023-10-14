@@ -1,6 +1,30 @@
 # gstreamer-pi-to-pi
 Use GStreamer to stream video from a Pi Zero 2 W with a Pi Zero Camera to second Pi
 
+## Install GStreamer
+Taken from the gstreamer site: https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c
+(many are probably already installed)
+
+`sudo apt-get install libgstreamer1.0-dev \
+	libgstreamer-plugins-base1.0-dev \
+ 	libgstreamer-plugins-bad1.0-dev \
+  	gstreamer1.0-plugins-base \
+   	gstreamer1.0-plugins-good \
+    	gstreamer1.0-plugins-bad \
+     	gstreamer1.0-plugins-ugly \
+      	gstreamer1.0-libav \
+       	gstreamer1.0-tools \
+	gstreamer1.0-x \
+ 	gstreamer1.0-alsa \
+  	gstreamer1.0-gl \
+   	gstreamer1.0-gtk3 \
+    	gstreamer1.0-qt5 \
+     	gstreamer1.0-pulseaudio`
+
+Test it's installed OK:
+
+`gst-launch-1.0 videotestsrc ! videoconvert ! autovideosink`
+
 ## Capture and Transmit Videos
 To capture images from a pi camera and then stream to a UDP sink.
 Run the pipline (same pipline in: video_stream_out.sh):
