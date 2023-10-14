@@ -5,7 +5,8 @@ Use GStreamer to stream video from a Pi Zero 2 W with a Pi Zero Camera to second
 Taken from the gstreamer site: https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c
 (many are probably already installed)
 
-`sudo apt-get install libgstreamer1.0-dev \
+```
+sudo apt-get install libgstreamer1.0-dev \
 	libgstreamer-plugins-base1.0-dev \
  	libgstreamer-plugins-bad1.0-dev \
   	gstreamer1.0-plugins-base \
@@ -19,7 +20,8 @@ Taken from the gstreamer site: https://gstreamer.freedesktop.org/documentation/i
   	gstreamer1.0-gl \
    	gstreamer1.0-gtk3 \
     	gstreamer1.0-qt5 \
-     	gstreamer1.0-pulseaudio`
+     	gstreamer1.0-pulseaudio
+```
 
 Test it's installed OK:
 
@@ -45,7 +47,8 @@ Run the following (same pipline in: video_stream_in_simple.sh):
 You can then play with GStreamer's built in functionality to do things like splitting the image into different windows (which GStreamer refers to as `tee`) and applying different processing to these - processes like edge detection, for example (same pipeline in: video_stream_in_tee_and_edge_detect.sh):
 
 
-`gst-launch-1.0 -v udpsrc port=5200 ! \
+```
+gst-launch-1.0 -v udpsrc port=5200 ! \
 	application/x-rtp, media=video, clock-rate=90000, payload=96 ! \
 	rtpjpegdepay ! \
 	jpegdec ! \
@@ -61,9 +64,13 @@ You can then play with GStreamer's built in functionality to do things like spli
 		glupload ! \
 		gleffects_sobel ! \
 		videoconvert ! \
-		glimagesink`
+		glimagesink
+```
 
-##
+## Run Shell Files from Terminal
+To run the .sh files straight fromt the terminal, modify them as below:
+
+`sudo chmod +x video_stream_in_simple.sh`
 
 
 ## To Stream to web page
